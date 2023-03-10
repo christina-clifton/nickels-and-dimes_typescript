@@ -1,0 +1,113 @@
+.transactions {
+    display: flex;
+    flex-direction: column;
+    width: 85%;
+    height: 85%;
+    margin: 5% auto;
+    background-color: white;
+    border-radius: 1rem;
+    padding: 1.5rem;
+}
+
+.transactions h3 {
+    font-size: 2.25rem;
+    color: #123024;
+    text-align: center;
+    background-color: inherit;
+    margin-bottom: 0.75rem;
+}
+
+.transactions .transactions-list {
+    overflow-y: scroll;
+    width: 100%;
+    scrollbar-color: #1b4332ce rgba(211, 211, 211, 0.479);
+    scrollbar-width: thin;
+}
+
+.transactions .transactions-list::-webkit-scrollbar {
+    width: 10px;
+}
+
+.transactions .transactions-list::-webkit-scrollbar-track {
+background-color: rgba(211, 211, 211, 0.479);
+border-radius: 100px;
+}
+
+.transactions .transactions-list::-webkit-scrollbar-thumb {
+background: #1b4332ce;
+border-radius: 100px;
+}
+
+.transactions .transaction {
+    display: flex;
+    flex-direction: row;
+    border-bottom: 0.5px dotted  rgba(0, 0, 0, 0.45);
+    padding: 0.5rem 0;
+}
+
+.transactions .transaction.deposit {
+    color: #24623A;
+}
+
+.transactions .transaction.withdrawal {
+    color: #bd3d3a;
+}
+
+.transactions .transaction-date {
+    padding-left: 0.5rem;
+    margin: auto 0;
+    cursor: default;
+}
+
+.transactions .transaction-value {
+    padding-left: 1rem;
+    font-weight: 600;
+    width: 4.5rem;
+    cursor: default;
+}
+
+.transactions .transaction-description {
+    display: flex;
+    border: none;
+    width: 29rem;
+    align-items: center;
+    color: inherit;
+    font-family: inherit;
+    font-size: inherit;
+    padding-left: 1rem;
+}
+
+.transactions .transaction-description:focus {
+    outline: 0;
+}
+
+.transactions .transactions-legend {
+    display: flex;
+    flex-direction: row;
+    width: 40%;
+    align-self: center;
+    justify-content: space-between;
+    color: inherit;
+    padding: 0;
+    margin: 1rem 0 0 0;
+}
+
+.transactions .transactions-legend li {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.transactions .legend-key {
+    width: 1rem;
+    height: 1rem;
+    margin: 0 0.5rem;
+}
+
+.transactions .legend-key#withdrawal  {
+    background-color: #bd3d3a;
+}
+
+.transactions .legend-key#deposit  {
+    background-color: #24623A;
+}
