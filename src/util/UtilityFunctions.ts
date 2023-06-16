@@ -1,23 +1,9 @@
 // Dependencies
 import { MONTHS } from '../components/app/App';
-
 import {Transaction} from '../types/transaction';
 
-const standardizeTransactionDateFormat = (date: any) => {
-    date = new Date(date);
-    const formatter = new Intl.DateTimeFormat('en-US', {
-        day: '2-digit',
-        month: '2-digit',
-        year: 'numeric'
-    });    
+import { MouseEvent, MouseEventHandler } from 'react';
 
-    return formatter.format(date);
-}
-
-export const getMonthIndexFromDate = (date: string) => {
-    const intlDate = new Date(date);
-    return intlDate.getUTCMonth();
-}
 
 // Merges 2 arrays of objects without duplicates.
 export const mergeTwoArraysOfObjects = (arr1: Transaction[], arr2: Transaction[]) => {
@@ -32,46 +18,78 @@ export const mergeTwoArraysOfObjects = (arr1: Transaction[], arr2: Transaction[]
     return arr1.concat(arr2);
 }
 
+// Returns an array of transaction objects filtered by the selectedMonth state & then sorted by Date.
+export const filterTransactionsByMonth = (transactions: Transaction[], selectedMonth: string) => {
+    const filteredTransactions = transactions.filter((transaction: Transaction) => transaction.Month === selectedMonth);
+    filteredTransactions.sort((a: Transaction, b: Transaction) => {
+        if(a.Date < b.Date) return -1;
+        if(a.Date > b.Date) return 1;
+        return 0;
+    })
+        
+    return filteredTransactions;
+}
+
 /* Takes in a transaction object and returns a standardized one with properties for Date, Amount, 
 Type, Description & Month */
-export const standardizeTransactionObject = (transaction: Transaction) => {
-    let standardizedTransactionObject = {
-        Date: '',
-        Amount: '',
-        Type: '',
-        Description: '',
-        Month: ''
-    };
+export class TransactionClass implements Transaction {
+    Date!: string;
+    Month!: string;
+    Amount!: string;
+    Type: string;
+    Description: string;
 
-    if(transaction.Date) {
-        standardizedTransactionObject.Date = standardizeTransactionDateFormat(transaction.Date);
-    } else if(transaction.PostingDate){
-        standardizedTransactionObject.Date = standardizeTransactionDateFormat(transaction.PostingDate);
-    } 
-
-    if(transaction.Amount) {
-        standardizedTransactionObject.Amount = transaction.Amount.replace('-',"");
-    } else if(transaction['Deposit(+)']) {
-        standardizedTransactionObject.Amount = transaction['Deposit(+)'].replace('-',"");
-        standardizedTransactionObject.Type = 'Deposit'
-    
-    } else if(transaction['Withdrawal(-)']) {
-        standardizedTransactionObject.Amount = transaction['Withdrawal(-)'].replace('-',"");
-        standardizedTransactionObject.Type = 'Withdrawal';
+    constructor(date: string, amount: string, type: string, description: string) {
+        this.setDate(date);
+        this.setMonth(date);
+        this.setAmount(amount);
+        this.Type = type;
+        this.Description = description;
     }
 
-    if(transaction.Type === 'Withdrawal' || transaction.Type === 'Deposit') {
-        standardizedTransactionObject.Type = transaction.Type;
-    } else if(transaction.Details === 'CREDIT' || transaction.Details === 'DEBIT') {
-        transaction.Details === 'CREDIT' ? 
-            standardizedTransactionObject.Type = 'Deposit' 
-        : 
-            standardizedTransactionObject.Type = 'Withdrawal';
-    } 
-    
-    standardizedTransactionObject.Description = transaction.Description;
-    standardizedTransactionObject.Month = MONTHS[getMonthIndexFromDate(standardizedTransactionObject.Date)];
+    setDate(date: string) {
+        const intlDate = new Date(date);
+        const formatter = new Intl.DateTimeFormat('en-US', {
+            day: '2-digit',
+            month: '2-digit',
+            year: '2-digit'
+        });    
 
-    console.log(standardizedTransactionObject);
-    return standardizedTransactionObject;
+        this.Date = formatter.format(intlDate);
+    }
+
+    setMonth(date: string) {
+        const intlDate = new Date(date);
+        this.Month = MONTHS[intlDate.getUTCMonth()];
+    }
+    
+    setAmount(amount: string) {
+        const amountNum = Number(amount.replace('-',""));
+
+        const USDollar = new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: 'USD'
+        });
+
+        this.Amount = USDollar.format(amountNum);
+        
+    }
 }
+
+export const useClickOutsideElement = (wrapperRef: any, callbackFunction: Function, id: string) => {
+    const handleClickOutside = (e: any) => {
+        if(
+            wrapperRef.current &&
+            !wrapperRef.current.contains(e.target) &&
+            e.target.id !== id
+        ) {
+            return callbackFunction();
+        }
+    }
+
+    document.addEventListener("click", handleClickOutside);   
+    
+    return () => {
+        document.removeEventListener("click", handleClickOutside);
+    };     
+};

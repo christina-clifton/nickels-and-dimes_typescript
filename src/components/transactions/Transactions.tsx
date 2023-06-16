@@ -28,7 +28,6 @@ export const Transactions = (props: IProps) => {
                 <li><div className="legend-key" id="withdrawal"></div>Withdrawals</li>
                 <li><div className="legend-key" id="deposit"></div>Deposits</li>
             </ul> 
-        </div> 
-            
+        </div>     
     )
 }

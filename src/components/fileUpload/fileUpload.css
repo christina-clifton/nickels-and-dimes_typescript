@@ -1,0 +1,32 @@
+.navbar .buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1rem auto;
+}
+
+.buttons .file-upload-label,
+.buttons .sample-data-button {
+    margin: 0.3rem;
+    border: none;
+    padding: 0.5rem;
+    background-color: #BBE6CA;
+    color: #123024;
+    cursor: pointer;
+    width: fit-content;
+    font-size: 0.6rem;
+    border-radius: 2rem;
+    font-family: 'Roboto', sans-serif;
+}
+
+.buttons input{
+    display: none;
+}
+
+@media only screen and (min-width: 500px) {
+    .buttons .file-upload-label,
+    .buttons .sample-data-button {
+        font-size: 0.8rem;
+        margin: 0.8rem;
+    }
+}

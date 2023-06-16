@@ -1,9 +1,6 @@
 // Dependencies
 import { MONTHS } from '../components/app/App';
 
-//Utility Functions
-import { getMonthIndexFromDate } from '../util/UtilityFunctions';
-
 // Constants
 const transactionDescriptions = ['Target', 'Petco', 'Amazon', 'Trader Joe\'s', 'Mahan Indian Restaurant', 'Veggie Grill', 
                                 'Mijares Mexican Restaurant', 'Vroman\'s Bookstore', 'Whole Foods', 'Home Depot',
@@ -24,7 +21,7 @@ export const SampleData = () => {
             Description: ''
         };
         withdrawalObject.Date = `${generateRandomDate(new Date(2022, 0, 1), new Date(2022, 11, 32))}`;
-        withdrawalObject.Month = `${MONTHS[getMonthIndexFromDate(withdrawalObject.Date)]}`;
+        withdrawalObject.Month = `${MONTHS[new Date(withdrawalObject.Date).getUTCMonth()]}`;
         withdrawalObject.Amount = `${Math.round((Math.random() * 100) * 100) / 100}`;
         withdrawalObject.Type = `Withdrawal`;
         withdrawalObject.Description = `${transactionDescriptions[Math.floor(Math.random() * transactionDescriptions.length)]}`;

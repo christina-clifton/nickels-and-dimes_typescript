@@ -7,7 +7,7 @@ export const AppHowTo = () => {
         <div className="how-to">
             <h2>How to use this app:</h2>
             <div className="main-text">
-                <div className="left-column">
+                <div className="column left-column">
                     <h3>Option 1</h3>
                     <ol>
                         <li>Login to your *bank's website and download your transaction history as a .csv file. The transactions must be within the same calendar year.</li>
@@ -16,7 +16,7 @@ export const AppHowTo = () => {
                     </ol>
                     <p>* Currently compatible with Chase, Charles Schwab & Ally.</p>
                 </div>
-                <div className="right-column">
+                <div className="column right-column">
                     <h3>Option 2</h3>
                     <ol>
                         <li>Click the 'Generate sample Data' button at the bottom-left corner of this screen.</li>
