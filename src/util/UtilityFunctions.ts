@@ -2,9 +2,6 @@
 import { MONTHS } from '../components/app/App';
 import {Transaction} from '../types/transaction';
 
-import { MouseEvent, MouseEventHandler } from 'react';
-
-
 // Merges 2 arrays of objects without duplicates.
 export const mergeTwoArraysOfObjects = (arr1: Transaction[], arr2: Transaction[]) => {
     for(let i = 0; i < arr1.length; i++) {
