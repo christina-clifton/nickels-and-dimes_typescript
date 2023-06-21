@@ -61,14 +61,18 @@ function App() {
         <div className='app-title'>
           <h1>Nickels <span>&</span> Dimes</h1>
         </div>
-        <h2>
-          <select name='month' className='selectedMonth' aria-label='Select Month'>
-            <option value='' hidden>{selectedMonth}</option>
-            {MONTHS.map((month) => {
-              return <option value={month} onClick={() => setSelectedMonth(month)}>{month}</option>
-            })}
-          </select>
-        </h2>
+        {filterTransactionsByMonth(transactions, selectedMonth).length > 0 ?
+            <h2>
+              <select name='month' className='selectedMonth' aria-label='Select Month'>
+                <option value='' hidden>{selectedMonth}</option>
+                {MONTHS.map((month) => {
+                  return <option value={month} onClick={() => setSelectedMonth(month)}>{month}</option>
+                })}
+              </select>
+            </h2>
+          :
+            null
+        }
 
         {filterTransactionsByMonth(transactions, selectedMonth).length > 0 ? 
             <div className='app-nav-toggle'>
