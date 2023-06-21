@@ -54,35 +54,55 @@ function App() {
 
     setTransactions(transactions.length > 0 ? mergeTwoArraysOfObjects(transactions, newTransactions) : newTransactions);
   }
-
+  
   return (
     <div id="app" className={navbarToggled ? 'nav-open' : ''}>
       <header>
         <div className='app-title'>
           <h1>Nickels <span>&</span> Dimes</h1>
         </div>
-        <div className='app-nav-toggle'>
-          <NavToggle 
-            navbarToggled={navbarToggled}
-            toggle={() => toggle(!navbarToggled)}
-          />
-        </div>
-      </header>
+        <h2>
+          <select name='month' className='selectedMonth' aria-label='Select Month'>
+            <option value='' hidden>{selectedMonth}</option>
+            {MONTHS.map((month) => {
+              return <option value={month} onClick={() => setSelectedMonth(month)}>{month}</option>
+            })}
+          </select>
+        </h2>
 
-      <nav ref={wrapperRef} className={`${navbarToggled ? 'open' : ''} navbar-container`}>
-        <NavBar 
-          selectedMonth={selectedMonth}
-          setSelectedMonth={setSelectedMonth}
-          handleSetTransactions={handleSetTransactions}
-          toggle={() => toggle(!navbarToggled)}
-        />
-      </nav>
+        {filterTransactionsByMonth(transactions, selectedMonth).length > 0 ? 
+            <div className='app-nav-toggle'>
+              <NavToggle 
+                navbarToggled={navbarToggled}
+                toggle={() => toggle(!navbarToggled)}
+              />
+            </div>
+          :
+            null
+        }
+        </header>
+
+        {filterTransactionsByMonth(transactions, selectedMonth).length > 0 ?
+            <nav ref={wrapperRef} className={`${navbarToggled ? 'open' : ''} navbar-container`}>
+              <NavBar 
+                selectedMonth={selectedMonth}
+                setSelectedMonth={setSelectedMonth}
+                handleSetTransactions={handleSetTransactions}
+                toggle={() => toggle(!navbarToggled)}
+              />
+            </nav>
+          :
+            null
+        }
+        
 
       <div id="main">
         {/* If the selected month does not have any transactions to display, the AppHowTo text is rendered.
         If the selected month does have transactions to display, those are rendered. */}
         {filterTransactionsByMonth(transactions, selectedMonth).length === 0 ? 
-            <AppHowTo /> 
+            <AppHowTo 
+              handleSetTransactions={handleSetTransactions}
+            /> 
           :
             <Transactions 
               transactions={filterTransactionsByMonth(transactions, selectedMonth)}

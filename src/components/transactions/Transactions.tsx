@@ -19,7 +19,7 @@ export const Transactions = (props: IProps) => {
                         <div className={transaction.Type === 'Deposit' ? 'transaction deposit' : 'transaction withdrawal'} key={i}>
                             <div className="transaction-date">{transaction.Date}</div>
                             <div className="transaction-value">{transaction.Amount}</div>
-                            <input className="transaction-description" placeholder={transaction.Description}></input>
+                            <input className="transaction-description" placeholder={transaction.Description} aria-label='Edit transaction description'></input>
                         </div>
                     )
                 })}

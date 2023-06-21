@@ -1,9 +1,10 @@
 // Dependencies
 import React, {Dispatch, SetStateAction} from 'react';
 import './NavBar.css';
-import { MONTHS } from '../app/App';
+// import { MONTHS } from '../app/App';
 import {Transaction} from '../../types/transaction';
 import { FileUpload } from '../fileUpload/fileUpload';
+import { SampleDataButton } from '../sampleDataButton/sampleDataButton';
 
 interface IProps {
     selectedMonth: string,
@@ -13,11 +14,11 @@ interface IProps {
 }
 
 export const NavBar = (props: IProps) => {
-    const {selectedMonth, setSelectedMonth, handleSetTransactions} = props;
+    const { /* selectedMonth, setSelectedMonth, */ handleSetTransactions} = props;
 
     return (
         <div className="navbar">
-            <ul className="months">
+            {/* <ul className="months">
                 {MONTHS.map((month) => {
                     return (
                         <button 
@@ -28,10 +29,16 @@ export const NavBar = (props: IProps) => {
                         >{month}</button>
                     )
                 })}
-            </ul>
-            <FileUpload 
-                handleSetTransactions={handleSetTransactions}
-            />
+            </ul> */}
+            <div className='buttons-container'>
+                <FileUpload 
+                    handleSetTransactions={handleSetTransactions}
+                />
+                <SampleDataButton
+                    handleSetTransactions={handleSetTransactions}
+                />
+            </div>
+            
         </div>
     )
 }

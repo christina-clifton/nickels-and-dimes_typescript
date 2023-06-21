@@ -1,28 +1,24 @@
-.file-upload-button-container {
+.sample-data-button-container {
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: 2rem;
+    width: 6rem;
 }
 
-#file-upload-label {
-    height: fit-content;
+.sample-data-button {
     border: none;
     padding: 0.5rem;
     background-color: #BBE6CA;
     color: #123024;
     cursor: pointer;
-    width: fit-content;
     font-size: 0.6rem;
     border-radius: 2rem;
     font-family: 'Roboto', sans-serif;
 }
 
-.file-upload-button-container input{
-    display: none;
-}
-
 @media only screen and (min-width: 500px) {
-    #file-upload-label {
+    .sample-data-button {
         font-size: 0.8rem;
     }
 }

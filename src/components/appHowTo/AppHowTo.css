@@ -1,44 +1,105 @@
 .how-to {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.how-to h2 {
-    font-family: 'Montserrat', sans-serif;
-    color: white;
-    text-align: center;
-    font-size: 1.1rem;
-}
-
-.how-to .main-text {
-    color: #BBE6CA;
+    height: 100%;
+    width: 100%;
+    color: #123024;
     font-family: 'Roboto', sans-serif;
     text-align: start;
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
     font-size: 0.8rem;
+    line-height: 0.9rem;
 }
 
-.column {
-    width: 50%;
+.how-to h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.1rem;
+    text-align: center;
+}
+
+.how-to .column {
+    width: 90%;
     padding: 1rem;
-    padding-top: 0;
+    background-color: white;
+    border-radius: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.how-to .text {
+    height: fit-content;
+}
+
+.how-to ol {
+    padding-left: 1rem;
 }
 
 .how-to li {
-    margin: 1rem 0;
+    margin-bottom: 1rem;
+}
+
+.how-to .button {
+    height: 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .how-to .left-column p {
     text-align: center;
     font-size: .7rem;
+    margin: 1rem 0 0 0;
 }
 
-@media only screen and (min-width: 500px) {
-    .how-to .main-text {
-        width: 80%;
+@media only screen and (min-width: 400px) {
+    .how-to {
+        font-size: 1rem;
+        line-height: 1.2rem;
     }
 
+    .how-to .column {
+        padding: 1.5rem;
+    }
+
+    .how-to ol {
+        padding-left: 1.5rem;
+    }
+
+}
+
+@media only screen and (min-width: 700px) {
+    .how-to {
+        width: 100%;
+        flex-direction: row;
+    }
+
+    .how-to .column {
+        width: 45%;
+        height: 60%;
+        border-radius: 3rem;
+    }
+
+    .how-to .left-column p {
+        font-size: .8rem;
+    }
+
+    .how-to .button {
+        height: 7rem;
+    }
+
+}
+
+@media only screen and (min-width: 800px) {
+    .how-to .column {
+        height: 55%;
+    }
+}
+
+@media only screen and (min-width: 900px) {
+    .how-to .column {
+        height: 50%;
+    }
 }

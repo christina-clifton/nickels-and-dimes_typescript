@@ -1,7 +1,6 @@
 import React from 'react';
 import './fileUpload.css'
 import Papa from 'papaparse';
-import { SampleData } from '../../sampleData/SampleData';
 import {Transaction} from '../../types/transaction';
 
 
@@ -49,15 +48,15 @@ export const FileUpload = (props: IProps) => {
     }
 
     return (
-        <div className='buttons'>
-            <label htmlFor="file-upload" className="file-upload-label">Upload .csv file</label>
+        <div className='file-upload-button-container'>
+            <label htmlFor="file-upload-input" id="file-upload-label">Upload .csv file</label>
             <input
                 type="file"
                 accept=".csv"
                 onChange={handleFileUpload}
-                id="file-upload"
+                id="file-upload-input"
+                aria-labelledby='file-upload-label'
             />
-            <button className="sample-data-button" onClick={() => handleSetTransactions(SampleData())}>Generate sample data</button>
         </div>
     )
 }
