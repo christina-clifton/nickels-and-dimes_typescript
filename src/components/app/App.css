@@ -52,7 +52,7 @@ h2 {
     grid-area: nav-toggle;
     padding: 0;
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
 }
 
 #main {
